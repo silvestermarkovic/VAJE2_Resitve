@@ -6,7 +6,14 @@ namespace Naloga3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+
+            Petelin zivPetelin = new Petelin("Marjan", 2);
+
+            Console.WriteLine(zivPetelin.Gibanje());
+            Console.WriteLine(zivPetelin.VrstaZivali);
+
+
 
         }
     }

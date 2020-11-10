@@ -65,7 +65,7 @@ namespace Naloga3
     public class Petelin : DomacaZival
     {
 
-        private int _vrstaZivali = (int)vrstaZivaliSeznam.Zver;
+        private int _vrstaZivali = (int)vrstaZivaliSeznam.Divjazival;
 
         public Petelin(string pNaziv, int pSteviloNog)
         {
