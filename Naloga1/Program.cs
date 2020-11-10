@@ -8,18 +8,23 @@ namespace Naloga1
         static void Main(string[] args)
         {
 
-            Indexers indeksi = new Indexers();
-            indeksi.dodajOsebo("Martin", 99);
-            indeksi.dodajOsebo("Silvester", 39);
-            indeksi.dodajOsebo("Marko", 58);
-            indeksi.dodajOsebo("Janez", 76);
-            indeksi.dodajOsebo("Martin", 29);
-            indeksi.dodajOsebo("Jože", 15);
-            indeksi.dodajOsebo("Martin", 18);
+            //TODO ustvaritite indekserji tipa Indexers
+            Indexers indekserji = new Indexers();
 
-            Console.WriteLine(indeksi.steviloDodajanj);
+            //TODO dodajte nekaj >6 oseb, s poljubnimi imeni (vsaj 1 naj se podvoji) in starostjo
+            indekserji.dodajOsebo("Martin", 99);
+            indekserji.dodajOsebo("Silvester", 39);
+            indekserji.dodajOsebo("Marko", 58);
+            indekserji.dodajOsebo("Janez", 76);
+            indekserji.dodajOsebo("Martin", 29);
+            indekserji.dodajOsebo("Jože", 15);
+            indekserji.dodajOsebo("Martin", 18);
 
-            Console.WriteLine(indeksi.vrniPrvoOsebo());
+            //izpisite vrednost steviloDodajanj 
+            Console.WriteLine(indekserji.steviloDodajanj);
+
+            //izpisite vrednost, ki jo vrnem metoda vrniPrvoOsebo
+            Console.WriteLine(indekserji.vrniPrvoOsebo());
 
         }
     }

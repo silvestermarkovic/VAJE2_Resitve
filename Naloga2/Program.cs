@@ -7,7 +7,7 @@ namespace Naloga2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
 
             //TODO: ustvarimo tocS tipa TockaS
             TockaS tocS = new TockaS();

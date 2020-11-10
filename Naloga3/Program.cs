@@ -11,17 +11,16 @@ namespace Naloga3
             Petelin zivPetelin = new Petelin("Marjan", 2);
 
             //TODO: izpišite na zaslon, kar vrne metoda Givanje in VrstaZivali
-            //Console.WriteLine(zivPetelin.Gibanje());
-            //Console.WriteLine(zivPetelin.VrstaZivali);
+            Console.WriteLine(zivPetelin.Gibanje());
+            Console.WriteLine(zivPetelin.VrstaZivali);
 
 
             //TODO: ustvarite objekt tipa Tiger z imenom zivTiger (z imenom Polde, število nog 4, št. zob 46)
-            //Tiger zivTiger = new Tiger("Polde", 4, 46);
-
+            Tiger zivTiger = new Tiger("Polde", 4, 46);
 
             
             //TODO: ustvarite in kličite razširitev Opis
-            //zivTiger.Opis();
+            zivTiger.Opis();
 
 
         }
