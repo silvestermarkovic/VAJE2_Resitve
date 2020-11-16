@@ -1,6 +1,7 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace Naloga4
@@ -12,7 +13,7 @@ namespace Naloga4
         /// Vsaka figura se zna premakniti na neko polje
         /// </summary>
         /// <param name="field">Polje, kamor se naj figura premakne</param>
-        void Move(ChessBoardField field);
+        void Move(ChessBoardField field, Player jaz, Player nasprotnik);
 
         /// <summary>
         /// Vmesniki definirajo tudi lastnosti v enaki obliki, 
@@ -39,6 +40,9 @@ namespace Naloga4
             X = p_x;
             Y = p_y;
         }
+
+        public string oznaka { get; set; }
+
         public int X { get; set; }
 
         /// <summary>
@@ -52,12 +56,12 @@ namespace Naloga4
         }
     }
 
-
+    
     /// <summary>
     /// V tem primeru naj razred implementira vmesnik IPiece,
     /// zato moramo implementirati tudi vse zahtevane metode in lastnosti vmesnika
     /// </summary>
-    public class ChessPiece : IPiece
+    public abstract class ChessPiece : IPiece
     {
         public ChessPiece(ChessBoardField start)
         {
@@ -65,6 +69,10 @@ namespace Naloga4
         }
 
         public double ChessWeight { get; protected set; }
+        //oznaka figure, bo predstavljala String, ki se bo izpisovl
+        public string  OznakaFigure { get; protected set; }
+       
+
 
         public override string ToString()
         {
@@ -79,10 +87,33 @@ namespace Naloga4
         /// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual?f1url=%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(virtual_CSharpKeyword);k(DevLang-csharp)%26rd%3Dtrue
         /// </summary>
         /// <param name="field">Polje, kamor naj se figura premakne</param>
-        public virtual void Move(ChessBoardField field)
+        public virtual void Move(ChessBoardField field, Player jaz, Player nasprotnik)
         {
+            if (nasprotnik.obstajaFiguraNaPoziciji (field) == true)
+            {
+                //požremo figuro
+                nasprotnik.odstraniFiguro(field);
+                Console.WriteLine($"Igralec {jaz.ime} je pojedel igralcu {nasprotnik.ime} figuro na poziciji ({field.X}, {field.Y})");
+            }
+
             position = field;
             
+        }
+
+
+
+        public abstract List<ChessBoardField> dovoljeniPremikiIgra(Player jaz, Player nasprotnik);
+        //seznam figur, ki jih lahko požrem napolni se v metodi dovoljeniPremikiIgra!
+        public List<ChessBoardField> dovoljeniPremikiIgraPozrem;
+
+
+        //izpis premikov
+        public void izpisiPremikeIgra(Player jaz, Player nasprotnik)
+        {
+            foreach (var kr1 in this.dovoljeniPremikiIgra(jaz, nasprotnik))
+            {
+                Console.WriteLine($"{kr1.X}, {kr1.Y}");
+            }
         }
 
         public bool IsAlive { get; set; }
@@ -104,17 +135,5 @@ namespace Naloga4
         }
     }
 
-    /// <summary>
-    /// V konkretnem podrazredu metodo Move zapišimo tako, 
-    /// da preveri, če je premik metode možen.
-    /// </summary>
    
-
-    public class Player
-    {
-        /// <summary>
-        /// Lastnost, ki vsebuje trenutne figure igralca
-        /// </summary>
-        public List<ChessPiece> MyPieces { get; } = new List<ChessPiece>();
-    }
 }
